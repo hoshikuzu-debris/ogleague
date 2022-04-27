@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h5>第{{contest.id}}回</h5>
+
+    
+
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlush{{contest.id}}">
+            {% for match in contest.matches.all %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading{{contest.id}}-{{match.level}}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{contest.id}}-{{match.level}}" aria-expanded="false" aria-controls="flush-collapse{{contest.id}}-{{match.level}}">
+                            <span class="">{{ match.level }}</span>
+                            {{ match.question.text }}
+                            {% if match.question.image %}
+                                <div>
+                                    <img src="{{ match.question.image.url }}" alt="お題画像">
+                                </div>
+                            {% endif %}
+                        </button>
+                    </h2>
+                    <div id="flush-collapse{{contest.id}}-{{match.level}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{contest.id}}-{{match.level}}" data-bs-parent="#accordionFlush{{contest.id}}">
+                        <div class="accordion-body">
+                            <div class="list-group list-group-flush">
+                                {% for answer in match.answers.all|dictsort:"rank"|slice:":3" %}
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <p class="mb-1">
+                                            <span class="">{{ answer.rank }}</span>
+                                            {{ answer.text }}
+                                        </p>
+                                        <small>
+                                            <img src="{{ answer.panellist.profile.icon.url }}" class="rounded-circle img-thumbnail" height="24px" width="24px" alt="アイコン">
+                                            {{ answer.panellist.account_name }}
+                                        </small>
+                                    </a>
+                                {% endfor %}
+
+                            </div>
+                            <a href="#" class="btn btn-primary">詳細</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="card-body">
+                    <div class="card-text">
+                        お題がありません
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

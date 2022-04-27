@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    classic index
+    <a class="" href="{% url 'classic:contest_redirect'%}">
+        コンテスト
+    </a>
+    <a class="" href="{% url 'classic:contest_list'%}">
+        コンテスト結果
+    </a>
+    <a class="" href="{% url 'classic:gallery_top'%}">
+        ギャラリー
+    </a>
+{% endblock %}

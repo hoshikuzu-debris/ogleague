@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    <!-- Modal -->
+    {% if question %}
+        {% include 'classic/includes/question_check_modal.html' %}
+        <div class="card">
+            <div class="card-header bg-transparent p-3">
+                <div class="text-muted">
+                    お題の評価にご協力ください
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    {{ question.text }}
+                </div>
+                <div id="check-question-image">
+                    {% if question.image %}
+                        <img src="{{ question.image.url }}" class="img-fluid" alt="お題画像">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <div class="container-fluid">
+                    <form id="form-check-question" action="{% url 'classic:api_check_question' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-evenly">
+                            <button type="submit" class="btn btn-primary" name="question-check-{{question.id}}" value="0" >
+                                <span class="pe-1">
+                                    <i class="bi bi-hand-thumbs-up-fill"></i>
+                                </span>
+                                いいね！
+                            </button>
+                            <button type="submit" class="btn btn-secondary" name="question-check-{{question.id}}" value="1">
+                                <span class="pe-1">
+                                    <i class="bi bi-hand-thumbs-down-fill"></i>
+                                </span>
+                                う〜ん...
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/classic/check_question.js' %}"></script>
+{% endblock %}

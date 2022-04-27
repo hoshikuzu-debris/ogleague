@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% include 'includes/form.html' %}
+    <div class="mb-3" id="question_image"></div>
+    <button type="submit" class="btn btn-primary">保存</button>
+</form>
+{% endblock %}
+
+
+{% block extrajs %}
+    <script src="{% static 'js/classic/post_question.js' %}"></script>
+{% endblock %}

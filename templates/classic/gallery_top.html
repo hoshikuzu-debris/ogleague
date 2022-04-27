@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    {% if answer_list %}
+        {% for answer in answer_list %}
+            <a href="">
+                {{ answer.match.question.text }}
+                {{ answer.text }}
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>お題がありません</p>
+    {% endif %}
+{% endblock %}

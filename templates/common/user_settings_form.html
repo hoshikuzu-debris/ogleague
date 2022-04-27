@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/common/croppie.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/common/form.css' %}"/>
+{% endblock%}
+
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+
+    <!-- Modal -->
+    <div class="modal fade" id="iconModal" tabindex="-1" aria-labelledby="iconModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="iconModalLabel">アイコンの編集</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>プロフィールに使用する画像をアップロードし、トリミングを行った上で登録してください。</p>
+                <div id="icon_croppie"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal-dismiss">キャンセル</button>
+                <button type="button" class="btn btn-primary" id="icon_submit" data-url="{% url 'common:api_icon_upload' %}">登録</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    {% if user_form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in user_form.non_field_errors %}
+                {{ error }}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if profile_form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in profile_form.non_field_errors %}
+                {{ error }}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+    <label class="form-label" for="upload_icon">
+        <img src="{{ user.profile.icon.url }}" class="rounded-circle" alt="アイコン" id="user-icon">
+        <input type="file" name="upload_icon" id="upload_icon" class="form-control d-none" aria-describedby="inputFileAddon" accept="image/*" />
+    </label>
+
+
+    {% for field in user_form %}
+        <div class="mb-3">
+            {{ field |add_label_class:'form-label' }}
+            {% if user_form.is_bound %}
+                {% if field.errors %}
+                    {% render_field field class="form-control is-invalid" %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field field class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field field class="form-control" %}
+            {% endif %}
+
+            {% if field.help_text %}
+                <small class="form-text text-muted">
+                    {{ field.help_text }}
+                </small>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% for field in profile_form %}
+        <div class="mb-3">
+            {{ field |add_label_class:'form-label' }}
+            {% if profile_form.is_bound %}
+                {% if field.errors %}
+                    {% render_field field class="form-control is-invalid" %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field field class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field field class="form-control" %}
+            {% endif %}
+
+            {% if field.help_text %}
+                <small class="form-text text-muted">
+                    {{ field.help_text }}
+                </small>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary" >保存</button>
+</form>
+{% endblock %}
+
+
+{% block extrajs %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/common/croppie.js' %}"></script>
+    <script src="{% static 'js/common/user_icon.js' %}"></script>
+{% endblock %}

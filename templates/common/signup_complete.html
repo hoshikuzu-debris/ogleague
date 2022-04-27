@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+    {{ user.username }}様 本登録が完了しました。<br>
+    登録されたメールアドレスとパスワードでログインしてください。<br>
+    <a class="btn btn-primary" href="{% url 'common:index' %}">トップページ</a>
+</p>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% if user in answer.get_favorite_users %}
+    <button class="btn" name="favorite-{{answer.id}}" type="submit"><i class="bi bi-heart-fill text-danger"></i></button>
+{% else %}
+    <button class="btn" name="favorite-{{answer.id}}" type="submit"><i class="bi bi-heart"></i></button>
+{% endif %}
+
+<span name="favorite-count-{{answer.id}}">{{ answer.favorites.count }}</span>

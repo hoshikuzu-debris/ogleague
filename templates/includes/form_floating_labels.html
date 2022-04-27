@@ -1,0 +1,47 @@
+{% load widget_tweaks %}
+
+
+{% if form.non_field_errors %}
+    <div class="alert alert-danger">
+        {% for error in form.non_field_errors %}
+            {{ error }}<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% for field in form %}
+    <div class="mb-3">
+        {% if form.is_bound %}
+            {% if field.errors or form.non_field_errors %}
+                <div class="form-floating">
+                    {% render_field field class="form-control is-invalid" placeholder=field.label %}
+                    {{ field |add_label_class:'form-label' }}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <div class="form-floating">
+                    {% render_field field class="form-control is-valid" placeholder=field.label %}
+                    {{ field |add_label_class:'form-label' }}
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="form-floating">
+                {% render_field field class="form-control" placeholder=field.label %}
+                {{ field |add_label_class:'form-label' }}
+            </div>
+        {% endif %}
+
+        {% if field.help_text %}
+            <small class="form-text text-muted">
+                {{ field.help_text }}
+            </small>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% csrf_token %}

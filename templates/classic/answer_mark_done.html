@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block content %}
+    {{ match.question.text }}
+    {% if match.question.image %}
+        <img src="{{ match.question.image.url }}" class="img-fluid" alt="お題画像">
+    {% endif %}
+
+    <div class="d-grid gap-0">
+        現在の順位
+        {% for answer in match.answers.all|dictsort:"rank" %}
+            <a href="{% url 'common:user_detail' answer.panellist.username %}" class="d-block border-bottom p-2">
+                {{ answer.rank }}
+                {{ answer.score }}
+                <span class="m-2">
+                    <img src="{{ answer.panellist.profile.icon.url }}" class="rounded-circle" height="35px" width="35px" alt="アイコン">
+                </span>
+                {{ answer.panellist.account_name }}
+            </a>
+        {% endfor %}
+    </div>
+
+    {% for answer in match.answers.all %}
+    <div>
+        {{ answer }}
+        <div>
+            {% for answer_review in answer.answer_reviews.all %}
+                {% if answer_review.reviewer == user %}
+                    {{ answer_review.point }}
+                    {{ answer_review.comment }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if player_list %}
+    <div class="d-grid gap-0">
+        {% for player in player_list %}
+            <a href="{% url 'common:user_detail' player.username %}" class="d-block border-bottom p-2">
+                <span class="m-2">
+                    <img src="{{ player.profile.icon.url }}" class="rounded-circle" height="35px" width="35px" alt="アイコン">
+                </span>
+                {{ player.account_name }}
+            </a>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>ユーザーが誰もいません</p>
+    {% endif %}
+{% endblock %}

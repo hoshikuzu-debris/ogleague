@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block content %}
+    {{ match.question.text }}
+    {% if match.question.image %}
+        <img src="{{ match.question.image.url }}" class="img-fluid" alt="お題画像">
+    {% endif %}
+
+    {% for field in form %}
+    <div class="mb-3">
+        {% if field.label %}<!--得点欄-->
+            <p>{{ field.label }}</p>
+            <div class="btn-group" role="group" aria-label="radio button group">
+                {{ field.value }}
+            </div>
+        {% else %}<!--コメント欄-->
+            {{ field.value }}
+        {% endif %}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    <a href="{% url 'classic:answer_mark_post' match.level.name %}" class="btn btn-primary">戻る</a>
+    <hr>
+    <form action="" method="POST">
+        <button type="submit" class="btn btn-primary">保存</button>
+        {% csrf_token %}
+    </form>
+{% endblock %}

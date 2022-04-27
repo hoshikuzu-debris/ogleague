@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+第{{match.contest.id}}回
+
+<span class="">{{ match.level }}</span>
+{{ match.question.text }}
+{% if match.question.image %}
+    <div>
+        <img src="{{ match.question.image.url }}" alt="お題画像">
+    </div>
+{% endif %}
+
+<div class="list-group">
+    {% for answer in match.answers.all|dictsort:"rank" %}
+        <a href="#answerDetail{{answer.id}}" class="list-group-item list-group-item-action" data-bs-toggle="modal">
+            <span class="">{{ answer.rank }}</span>
+            {{ answer.text }}
+            <div>
+                <img src="{{ answer.panellist.profile.icon.url }}" class="rounded-circle img-thumbnail" height="24px" width="24px" alt="アイコン">
+                <small class="text-muted">
+                    {{ answer.panellist.account_name }}
+                </small>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+
+<!-- answerDetailModal -->
+{% for answer in match.answers.all %}
+<div class="modal fade" id="answerDetail{{answer.id}}" tabindex="-1" aria-labelledby="answerDetail{{answer.id}}Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title d-inline-block" id="answerDetail{{answer.id}}Label">
+                    {{ match.question.text }}
+                    {% if match.question.image %}
+                        <div>
+                            <img src="{{ match.question.image.url }}" alt="お題画像">
+                        </div>
+                    {% endif %}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span class="">{{ answer.rank }}</span>
+                {{ answer.text }}<br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

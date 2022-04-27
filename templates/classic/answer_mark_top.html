@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h5>第{{contest.id}}回</h5>
+
+    {% for match in contest.matches.all %}
+        <span class="">{{ match.level }}</span>
+        <a href="{% url 'classic:answer_mark_post' match.level.name %}">
+            {{ match.question.text }}
+        </a>
+        {% if match.question.image %}
+            <div>
+                <img src="{{ match.question.image.url }}" alt="お題画像">
+            </div>
+        {% endif %}
+    {% empty %}
+        お題がありません
+    {% endfor %}
+
+{% endblock %}

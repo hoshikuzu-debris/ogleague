@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ answer.match.question.text }}
+    {% if answer.match.question.image %}
+        <img src="{{ answer.match.question.image.url }}" class="img-fluid" alt="お題画像">
+    {% endif %}
+
+    <form method="POST">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url 'common:signup' %}" method="POST">
+    {% include 'includes/form_floating_labels.html' %}
+    <button type="submit" class="btn btn-primary">保存</button>
+</form>
+{% endblock %}

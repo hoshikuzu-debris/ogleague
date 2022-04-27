@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+    <div class="card mb-3">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <div class="flex-shrink-0">
+                    <img src="{{ player.profile.icon.url }}" class="rounded-circle img-thumbnail" height="100px" width="100px" alt="アイコン">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <div class="username-wrapper mb-3">
+                        <h5 class="card-title">{{ player.account_name }}</h5>
+                        <h6 id="username" class="card-subtitle text-muted" data-username="{{player.username}}">@{{ player.username }}</h6>
+                    </div>
+                    {% if user == player %}
+                        <a href="{% url 'common:user_settings_update' %}" class="card-link btn btn-outline-secondary btn-sm">
+                            <span class="me-1"><i class="bi bi-person-fill"></i></span>プロフィールを変更
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <p class="card-text">{{ player.profile.bio|linebreaksbr }}</p>
+        </div>
+    </div>
+
+    {% comment "" %}
+        <div class="mb-3">
+            <div class="row g-0">
+                <div class="col">
+                    <select class="sort-answer form-select" name="sort-answer" aria-label="answer sort">
+                        <option value="date_answered">全て</option>
+                        <option value="rank">1位</option>
+                        <option value="score">高得点</option>
+                        <option value="favorite">お気に入られ</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <span class="">お気に入り</span>
+                </div>
+            </div>
+        </div>
+    {% endcomment %}
+
+    <div id="sort-answer-result" class="d-grid gap-2">
+        {% for answer in answer_list %}
+            {% include 'classic/includes/answer_card.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block extrajs %}
+    <script src="{% static 'js/classic/favorite.js' %}"></script>
+{% endblock %}

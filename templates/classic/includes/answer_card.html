@@ -1,0 +1,60 @@
+{% load static %}
+
+
+<div class="card answer-{{ answer.id }}">
+    {# <img src="..." class="card-img-top" alt="..."> #}
+    <a href="" class="d-block card-header bg-transparent">
+        {{ answer.match.question.text }}
+        <div>
+            {% if answer.match.question.image %}
+                <img src="{{ answer.match.question.image.url }}" class="card-img-top" alt="お題画像">
+            {% endif %}
+        </div>
+    </a>
+    <div class="card-body">
+        <div class="card-text">
+            <div class="d-inline-block rounded-patch bg-primary me-3">
+                <span class="rounded-patch-content text-white">{{ answer.rank }}</span>
+            </div>
+            {{ answer.text }}
+        </div>
+    </div>
+
+    <div class="">
+        <span class="me-2">
+            {{ answer.score }}<small>点</small>
+        </span>
+        <span class="">
+            ?件のいいね
+        </span>
+    </div>
+    <div>
+        {% for review in answer.answer_reviews.all %}
+            <a href="{% url 'common:user_detail' review.reviewer.username %}" class="btn btn-primary btn-sm" role="button">
+                {{ review.reviewer.username }}
+                <span class="badge rounded-pill bg-secondary">{{ review.point }}</span>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="card-footer text-muted bg-transparent">
+        <div class="row g-2">
+            <div class="col">
+                <span class=""><i class="bi bi-chat-text"></i></span>
+            </div>
+            <div class="col">
+                <form class="favorite-form" action="{% url 'classic:api_post_favorite' %}" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        {% include 'classic/includes/favorite.html' %}
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <span class=""><i class="bi bi-info-circle"></i></span>
+            </div>
+            <div class="col">
+                <span class=""><i class="bi bi-share"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
