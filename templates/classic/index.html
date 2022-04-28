@@ -12,3 +12,14 @@
         ギャラリー
     </a>
 {% endblock %}
+
+{% block extrajs %}
+    <script>
+        const navItem = document.getElementById('classicNav');
+        navItem.querySelector('.nav-link').classList.add('active');
+        navItem.querySelector('.nav-link').setAttribute('aria-expanded', 'true');
+        navItem.querySelector('.nav-link').setAttribute('aria-current', 'page');
+        navItem.querySelector('.collapse').classList.add('show');
+        navItem.querySelector('.collapse .collapse-inner .home').classList.add('active');
+    </script>
+{% endblock %}

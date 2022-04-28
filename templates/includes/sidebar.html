@@ -1,6 +1,41 @@
 {% load static %}
 
 
-<ul id="sidebar-wrapper" class="sidebar navbar-nav bg-primary bg-gradient">
-    <a href="{% url 'common:index' %}" class="sidebar-brand text-white">OGLeague</a>
+<ul id="sidebar-wrapper" class="navbar-nav bg-primary bg-gradient d-none d-md-flex">
+    <li class="nav-item" id="classicNav">
+        <a class="nav-link" data-bs-toggle="collapse" href="#collapseClassic" role="button" aria-expanded="false" aria-controls="collapseClassic">
+            <span>CL</span>
+            <span>クラシック</span>
+        </a>
+        <div class="collapse" id="collapseClassic" data-bs-parent="#sidebar-wrapper">
+            <div class="collapse-inner rounded">
+                <a href="{% url 'classic:index' %}" class="collapse-item home">
+                    ホーム
+                </a>
+                <a href="{% url 'classic:contest_redirect' %}" class="collapse-item contest">
+                    コンテスト
+                </a>
+                <a href="{% url 'classic:gallery_top' %}" class="collapse-item gallery">
+                    ギャラリー
+                </a>
+                <hr>
+                <a href="{% url 'classic:question_post' %}" class="collapse-item post">
+                    お題投稿
+                </a>
+                <a href="{% url 'classic:question_check' %}" class="collapse-item check">
+                    お題チェック
+                </a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'common:user_list' %}">
+            <i class="bi bi-people-fill"></i>
+            <span>ユーザー</span>
+        </a>
+    </li>
+
+
 </ul>
+

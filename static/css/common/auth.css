@@ -1,0 +1,30 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100vh;
+  color: #858796;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.container {
+  height: 100%;
+}
+
+.container .row {
+  height: 100%;
+}
+
+.card {
+  overflow: hidden;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=auth.css.map */

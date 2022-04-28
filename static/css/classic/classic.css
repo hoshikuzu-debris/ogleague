@@ -1,0 +1,40 @@
+.rounded-patch {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.rounded-patch-sm {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1.2rem;
+}
+
+.rounded-patch-lg {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 1.8rem;
+}
+
+.rounded-patch-xl {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 2.3rem;
+}
+
+.rounded-patch-content {
+    position: relative;
+    top: -1px;
+}
+
+.rounded-patch i {
+    position: relative;
+    top: -1px;
+}

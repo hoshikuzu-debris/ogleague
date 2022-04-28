@@ -9,6 +9,11 @@ class Level(models.Model):
         "レベル",
         unique=True
     )
+    color = models.CharField(
+        "カラー",
+        max_length=100,
+        blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -17,4 +22,3 @@ class Level(models.Model):
         verbose_name = 'レベル'
         verbose_name_plural = 'レベル'
         ordering = ['-id', ]
-        

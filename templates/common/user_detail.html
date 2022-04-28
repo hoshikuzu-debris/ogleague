@@ -2,14 +2,18 @@
 
 {% load static %}
 
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/common/user_detail.css' %}">
+{% endblock extrastyle %}
+
+
 
 {% block content %}
-    <div class="card mb-3">
-        <img src="..." class="card-img-top" alt="...">
+    <div class="card justify-content-center mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center mb-3">
                 <div class="flex-shrink-0">
-                    <img src="{{ player.profile.icon.url }}" class="rounded-circle img-thumbnail" height="100px" width="100px" alt="アイコン">
+                    <img src="{{ player.profile.icon.url }}" class="img-profile rounded-circle" alt="アイコン">
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <div class="username-wrapper mb-3">
@@ -22,6 +26,9 @@
                         </a>
                     {% endif %}
                 </div>
+            </div>
+            <div>
+                {{ player.profile.classic_level }}レベル
             </div>
             <p class="card-text">{{ player.profile.bio|linebreaksbr }}</p>
         </div>

@@ -1,0 +1,7 @@
+.form-text {
+    display: none;
+}
+
+.form-control:focus + .form-text {
+    display: block;
+}

@@ -1,0 +1,23 @@
+html {
+    min-height: 100%;
+}
+body {
+    height: 100vh;
+    color: #858796;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.container {
+    height: 100%;
+    .row {
+        height: 100%;
+    }
+}
+.card {
+    overflow: hidden;
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
