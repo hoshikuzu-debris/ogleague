@@ -1,0 +1,110 @@
+@import "../../lib/scss/variables";
+
+html {
+    height: 100%;
+
+    body {
+        height: 100%;
+        //color: $text-primary;
+        //font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+}
+
+// #wrapper {
+    // height: 100%;
+// }
+
+#sidebar-wrapper {
+    min-width: 12rem;
+    min-height: 100vh;
+
+    .nav-item {
+        .nav-link {
+            color: rgba(255,255,255,.8);
+            padding: 1rem;
+            i {
+                color: rgba(255,255,255,.3);
+                margin-right: 0.25rem;
+            }
+            &:hover, &:focus, &.active {
+                color: $white;
+                font-weight: 900;
+                outline: none;
+                i {
+                    color: $white;
+                }
+            }
+        }
+        .collapsing, .collapse {
+            margin: 0 1rem;
+            .collapse-inner {
+                padding: 0.5rem 0;
+                background-color: $white;
+                .collapse-item {
+                    padding: 0.5rem 1rem;
+                    margin: 0 0.5rem;
+                    display: block;
+                    color: $gray-900;
+                    text-decoration: none;
+                    border-radius: 0.25rem;
+                    white-space: nowrap;
+                    &:hover, &:focus {
+                        color: shade-color($gray-900, 90%);
+                        background-color: $gray-200;
+                        outline: none;
+                    }
+                    &:active {
+                        background-color: $gray-300;
+                    }
+                    &.active {
+                        color: $blue;
+                        font-weight: 900;
+                    }
+                }
+                hr {
+                    margin: 0.5rem 0;
+                }
+            }
+        }
+    }
+}
+
+#content-wrapper {
+    background-color: #f8f9fc;
+    min-height: 100vh;
+    width: 100%;
+    //overflow-x: hidden;
+}
+
+#content {
+    height: 100%;
+
+    .topbar {
+        height: $topbar-base-height;
+
+        .container-fluid {
+
+            #sidebarToggleTop {
+                height: 2.5rem;
+                width: 2.5rem;
+                &:hover, &:focus {
+                    background-color: $gray-200;
+                    outline: none;
+                }
+                &:active {
+                    background-color: $gray-300;
+                }
+            }
+            .navbar-nav {
+                .nav-item {
+                    #userDropdown {
+                        .img-profile {
+                            height: 2rem;
+                            width: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

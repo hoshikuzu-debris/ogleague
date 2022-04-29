@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,SAAS,EAAE,KAAK;EAChB,UAAU,EAAE,KAAK;CACpB",
-    "sources": [
-        "question_post.scss"
-    ],
-    "names": [],
-    "file": "question_post.css"
-}
