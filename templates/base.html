@@ -18,7 +18,7 @@
             <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 
             <!-- my CSS-->
-            <link rel="stylesheet" href="{% static 'common/css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'common/css/ogleague.css' %}">
         {% endblock%}
 
         {% block extrastyle %}
@@ -29,18 +29,18 @@
     </head>
     <body>
         <!-- Page Wrapper -->
-        <div id="wrapper" class="d-flex">
-            <!-- Sidebar -->
-            {% include 'includes/sidebar.html' %}
+        <div id="wrapper" class="d-flex flex-column">
+            <!-- Topbar -->
+            {% include 'includes/topbar.html' %}
+
 
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex">
+                <!-- Sidebar -->
+                {% include 'includes/sidebar.html' %}
                 <div id="content" class="">
-                    <!-- Topbar -->
-                    {% include 'includes/navbar.html' %}
-
                     <!-- Container-->
-                    <div class="container-fluid">
+                    <div class="container">
                         <!-- Messages -->
                         {% include 'includes/messages.html' %}
 
@@ -49,14 +49,15 @@
                         {% endblock %}
                     </div>
                 </div>
-                <footer class="footer bg-white">
-                    <div class="container">
-                        <div class="text-center">
-                            <small>OGLeague</small>
-                        </div>
-                    </div>
-                </footer>
             </div>
+            <!-- Footer -->
+            <footer class="footer bg-white">
+                <div class="container">
+                    <div class="text-center">
+                        <small>OGLeague</small>
+                    </div>
+                </div>
+            </footer>
 
 
         </div>

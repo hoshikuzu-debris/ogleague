@@ -18,10 +18,12 @@ from classic.forms import AnswerForm, create_DynamicAnswerReviewForm
 
 User = get_user_model()
 
-class AnswerMarkTop(DetailView):
+class AnswerMarkTop(TemplateView):
     template_name = 'classic/answer_mark_top.html'
 
-    def get_object(self, queryset=None):
+    def get_context_data(self, **kwargs):
+        """Insert match into the context dict."""
+        context = super().get_context_data(**kwargs)
         contest = get_object_or_404(
             Contest,
             is_held=True,
@@ -29,7 +31,14 @@ class AnswerMarkTop(DetailView):
             post_deadline__lte=timezone.now(),
             date_marked__gte=timezone.now(),
         )
-        return contest
+        match_list = Match.objects.filter(
+            contest=contest
+        ).order_by('level__order')
+        context.update({
+            'contest': contest,
+            'match_list': match_list,
+        })
+        return context
 
 
 class AnswerMarkPost(LoginRequiredMixin, FormView):

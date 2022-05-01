@@ -1,18 +1,52 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'common/css/user_list.css' %}">
+{% endblock extrastyle %}
+
+
 {% block content %}
-    {% if player_list %}
-    <div class="d-grid gap-0">
-        {% for player in player_list %}
-            <a href="{% url 'common:user_detail' player.username %}" class="d-block border-bottom p-2">
-                <span class="m-2">
-                    <img src="{{ player.profile.icon.url }}" class="rounded-circle" height="35px" width="35px" alt="アイコン">
-                </span>
-                {{ player.account_name }}
-            </a>
+    <h4>
+        ユーザー一覧
+    </h4>
+    <h5 class="mb-4">
+        クラシック
+    </h5>
+
+    <div class="list-group shadow bg-white rounded mb-4">
+        {% for level, player_set in player_list.items %}
+            <div class="list-group-item">
+                <div class="bg-gradient">
+                    {{ level.name }}
+                </div>
+            </div>
+            {% for player in player_set %}
+                <a href="{% url 'common:user_detail' player.username %}" class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                    <div class="me-2">
+                        <img src="{{ player.profile.icon.url }}" class="img-profile rounded-circle" alt="アイコン">
+                    </div>
+                    <div class="me-auto">
+                        {{ player.account_name }}
+                    </div>
+                    <div>
+                        <i class="bi bi-award"></i>
+                        グランプリ{{ player.answers.count }}
+                    </div>
+                    <div>
+                        ボケ{{ player.answers.count }}
+                    </div>
+                </a>
+            {% empty %}
+                <div class="px-4 py-2">
+                    ユーザーが誰もいません
+                </div>
+            {% endfor %}
+        {% empty %}
+            <div class="p-2">
+                ユーザーが誰もいません
+            </div>
         {% endfor %}
     </div>
-    {% else %}
-        <p>ユーザーが誰もいません</p>
-    {% endif %}
 {% endblock %}

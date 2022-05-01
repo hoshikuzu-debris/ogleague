@@ -1,13 +1,10 @@
-{% load static %}
-
-
-<ul id="sidebar-wrapper" class="navbar-nav bg-primary bg-gradient d-none d-md-flex">
+<ul id="sidebar" class="navbar-nav bg-primary bg-gradient">
     <li class="nav-item" id="classicNav">
         <a class="nav-link" data-bs-toggle="collapse" href="#collapseClassic" role="button" aria-expanded="false" aria-controls="collapseClassic">
             <span>CL</span>
             <span>クラシック</span>
         </a>
-        <div class="collapse" id="collapseClassic" data-bs-parent="#sidebar-wrapper">
+        <div class="collapse" id="collapseClassic" data-bs-parent="#sidebar">
             <div class="collapse-inner rounded">
                 <a href="{% url 'classic:index' %}" class="collapse-item home">
                     ホーム
@@ -35,7 +32,6 @@
             <span>ユーザー</span>
         </a>
     </li>
-
 
 </ul>
 

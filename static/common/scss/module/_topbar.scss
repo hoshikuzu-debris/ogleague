@@ -1,0 +1,33 @@
+@import "../../../lib/scss/variables";
+
+#topbar {
+    height: $topbar-base-height;
+    flex: 0 0 auto;
+
+    .container-fluid {
+        padding: 0 1rem;
+
+        #sidebarToggleTop {
+            height: 2.5rem;
+            width: 2.5rem;
+            i {
+                color: $blue;
+                font-size: large;
+            }
+            &:hover, &:focus {
+                background-color: $gray-200;
+                outline: none;
+            }
+            &:active {
+                background-color: $gray-300;
+            }
+        }
+        .navbar-nav {
+            .nav-item {
+                i {
+                    color: $gray-500;
+                }
+            }
+        }
+    }
+}

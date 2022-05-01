@@ -1,5 +1,5 @@
 const fileInput = document.querySelector('input[type="file"]');
-const questionImage = document.getElementById('question_image');
+const imgQuestion = document.querySelector('.img-question-container');
 
 
 fileInput.addEventListener('change', function() {
@@ -7,9 +7,10 @@ fileInput.addEventListener('change', function() {
     const reader = new FileReader();
     const img = document.createElement("img");
 
-    questionImage.innerHTML = "";
+    console.log(imgQuestion);
+    console.log(fileInput);
 
-
+    // imgQuestion.innerHTML = " ";
     // dataURL形式で画像ファイルを読み込む
     reader.readAsDataURL(file);
 
@@ -18,8 +19,9 @@ fileInput.addEventListener('change', function() {
         img.setAttribute("src", reader.result);
         //img.setAttribute("class", "img-fluid");
         img.setAttribute("alt", "お題画像");
+        img.classList.add('img-fluid');
         //img.style.setProperty("max-width", "100%");
         //img.style.setProperty("max-height", "100%");
-        questionImage.appendChild(img);
+        imgQuestion.appendChild(img);
     };
 });

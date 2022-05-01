@@ -6,8 +6,7 @@
 
 
 {% block extrastyle %}
-    <link rel="stylesheet" href="{% static 'css/lib/croppie.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/common/form.css' %}"/>
+    <link rel="stylesheet" href="{% static 'croppie/croppie.css' %}"/>
 {% endblock%}
 
 
@@ -52,7 +51,7 @@
 
 
     <label class="form-label" for="upload_icon">
-        <img src="{{ user.profile.icon.url }}" class="rounded-circle" alt="アイコン" id="user-icon">
+        <img src="{{ user.profile.icon.url }}" class="img-profile-lg" alt="アイコン" id="user-icon">
         <input type="file" name="upload_icon" id="upload_icon" class="form-control d-none" aria-describedby="inputFileAddon" accept="image/*" />
     </label>
 
@@ -117,6 +116,6 @@
 
 {% block extrajs %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{% static 'js/lib/croppie.js' %}"></script>
-    <script src="{% static 'js/common/user_icon.js' %}"></script>
+    <script src="{% static 'croppie/croppie.min.js' %}"></script>
+    <script src="{% static 'common/js/user_icon.js' %}"></script>
 {% endblock %}

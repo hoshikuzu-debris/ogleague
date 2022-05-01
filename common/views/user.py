@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from common.forms import MyUserCreationForm, UserUpdateForm, ProfileUpdateForm
 
-from classic.models import Answer
+from classic.models import Answer, Level
 
 
 User = get_user_model()
@@ -153,17 +153,20 @@ class UserList(generic.ListView):
         return User.objects.order_by('username')
 
 
-def user_detail(request, username):
-    """各ユーザーの詳細ページ"""
+class UserList(generic.TemplateView):
+    '''ユーザー一覧'''
+    template_name = 'common/user_list.html'
 
-    player = get_object_or_404(User, username=username)
-    context = {'player': player}
-
-    answer_list = Answer.objects.filter(panellist=player, match__contest__was_marked=True).order_by('-date_answered')
-    context['answer_list'] = answer_list
-
-    return render(request, "common/user_detail.html", context)
-
+    def get_context_data(self, **kwargs):
+        """Insert match into the context dict."""
+        context = super().get_context_data(**kwargs)
+        player_list = {}
+        for level in Level.objects.order_by('order'):
+            player_list[level] = User.objects.filter(
+                profile__classic_level=level
+            ).order_by('username')
+        context['player_list'] = player_list
+        return context
 
 class UserDetail(generic.DetailView):
     context_object_name = 'player'

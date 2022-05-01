@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block style %}
             <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{% static 'css/lib/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'lib/css/bootstrap.custom.css' %}">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
             <!-- Font Family -->
@@ -19,7 +19,7 @@
             <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 
             <!-- my CSS-->
-            <link rel="stylesheet" href="{% static 'css/common/auth.css' %}">
+            <link rel="stylesheet" href="{% static 'common/css/auth.css' %}">
         {% endblock%}
 
         {% block extrastyle %}
@@ -27,9 +27,9 @@
 
         <title>OGLeague</title>
     </head>
-    <body class="bg-primary bg-gradient">
+    <body class="bg-primary">
         <div class="container">
-            <div class="row justify-content-center align-items-center">
+            <div class="row">
                 <div class="col">
                     <div class="card border-0 shadow-lg my-5">
                         <div class="card-body p-0">
@@ -57,7 +57,7 @@
             </div>
         </div>
         {% block js %}
-            <script src="{% static 'js/lib/bootstrap.bundle.min.js' %}"></script>
+            <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
         {% endblock %}
 
         {% block extrajs %}

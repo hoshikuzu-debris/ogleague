@@ -1,9 +1,9 @@
 {% load static %}
 
 
-<nav class="navbar navbar-expand navbar-light bg-white topbar shadow mb-4">
+<nav id="topbar" class="navbar navbar-expand navbar-light bg-white">
     <div class="container-fluid">
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-2">
+        <button id="sidebarToggleTop" class="btn btn-link rounded-circle me-2">
             <i class="bi bi-list"></i>
         </button>
         <a class="navbar-brand" href="{% url 'common:index' %}">OGLeague</a>
@@ -12,7 +12,7 @@
             {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ user.profile.icon.url }}" class="img-profile rounded-circle" alt="アイコン">
+                        <img src="{{ user.profile.icon.url }}" class="img-profile" alt="アイコン">
                         <span class="d-none d-md-inline ms-1 small">{{ user.account_name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">

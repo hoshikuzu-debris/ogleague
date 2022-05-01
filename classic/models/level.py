@@ -1,3 +1,4 @@
+from tokenize import Triple
 from django.db import models
 from django.apps import apps
 
@@ -14,6 +15,10 @@ class Level(models.Model):
         max_length=100,
         blank=True
     )
+    order = models.IntegerField(
+        'オーダー',
+        unique=True,
+    )
 
     def __str__(self):
         return self.name
@@ -21,4 +26,4 @@ class Level(models.Model):
     class Meta:
         verbose_name = 'レベル'
         verbose_name_plural = 'レベル'
-        ordering = ['-id', ]
+        ordering = ['order', ]

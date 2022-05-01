@@ -7,7 +7,10 @@ Level = apps.get_model('classic', 'Level', require_ready=False)
 User = get_user_model()
 
 def get_or_create_default_level():
-    default_level, created = Level.objects.get_or_create(name='C')
+    default_level, created = Level.objects.get_or_create(
+        name='C',
+        order=4
+    )
     return default_level
 
 class Profile(models.Model):

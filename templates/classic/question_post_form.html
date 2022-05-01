@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block extrastyle %}
-    <link rel="stylesheet" href="{% static 'common/css/question_post.css' %}">
 {% endblock extrastyle %}
 
 
@@ -12,12 +11,12 @@
 
 <form method="POST" enctype="multipart/form-data">
     {% include 'includes/form.html' %}
-    <div class="mb-3" id="question_image"></div>
+    <div class="img-question-container mb-3"></div>
     <button type="submit" class="btn btn-primary">保存</button>
 </form>
 {% endblock %}
 
 
 {% block extrajs %}
-    <script src="{% static 'js/classic/post_question.js' %}"></script>
+    <script src="{% static 'classic/js/post_question.js' %}"></script>
 {% endblock %}

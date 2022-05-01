@@ -1,22 +1,21 @@
-@import "../../lib/scss/variables";
+@import "../../../lib/scss/variables";
 
-html {
-    height: 100%;
 
-    body {
-        height: 100%;
-        //color: $text-primary;
-        //font-family: 'M PLUS Rounded 1c', sans-serif;
+#sidebar {
+    display: none;
+    @media (min-width: map-get($grid-breakpoints, sm)){
+        display: flex;
+        flex-direction: column;
+        width: $sidebar-base-width;
     }
-}
-
-// #wrapper {
-    // height: 100%;
-// }
-
-#sidebar-wrapper {
-    min-width: 12rem;
-    min-height: 100vh;
+    &.toggled {
+        display: flex;
+        flex-direction: column;
+        width: $sidebar-xs-width;
+        @media (min-width: map-get($grid-breakpoints, sm)){
+            display: none;
+        }
+    }
 
     .nav-item {
         .nav-link {
@@ -53,56 +52,18 @@ html {
                         background-color: $gray-200;
                         outline: none;
                     }
+                    &:active, &.active {
+                        font-weight: 900;
+                    }
                     &:active {
                         background-color: $gray-300;
                     }
                     &.active {
                         color: $blue;
-                        font-weight: 900;
                     }
                 }
                 hr {
                     margin: 0.5rem 0;
-                }
-            }
-        }
-    }
-}
-
-#content-wrapper {
-    background-color: #f8f9fc;
-    min-height: 100vh;
-    width: 100%;
-    //overflow-x: hidden;
-}
-
-#content {
-    height: 100%;
-
-    .topbar {
-        height: $topbar-base-height;
-
-        .container-fluid {
-
-            #sidebarToggleTop {
-                height: 2.5rem;
-                width: 2.5rem;
-                &:hover, &:focus {
-                    background-color: $gray-200;
-                    outline: none;
-                }
-                &:active {
-                    background-color: $gray-300;
-                }
-            }
-            .navbar-nav {
-                .nav-item {
-                    #userDropdown {
-                        .img-profile {
-                            height: 2rem;
-                            width: 2rem;
-                        }
-                    }
                 }
             }
         }

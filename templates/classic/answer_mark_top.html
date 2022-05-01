@@ -3,20 +3,38 @@
 
 {% block content %}
 
-    <h5>第{{contest.id}}回</h5>
+    <h4 class="mb-3">第{{contest.id}}回</h4>
 
-    {% for match in contest.matches.all %}
-        <span class="">{{ match.level }}</span>
-        <a href="{% url 'classic:answer_mark_post' match.level.name %}">
-            {{ match.question.text }}
-        </a>
-        {% if match.question.image %}
-            <div>
-                <img src="{{ match.question.image.url }}" alt="お題画像">
+    <div class="row">
+        {% for match in match_list %}
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow h-100 d-flex flex-row">
+                    <div class="">
+                        <span class="">{{ match.level }}</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <a href="{% url 'classic:answer_mark_post' match.level.name %}">
+                            {{ match.question.text }}
+                        </a>
+                        {% if match.question.image %}
+                            <div>
+                                <img src="{{ match.question.image.url }}" alt="お題画像">
+                            </div>
+                        {% endif %}
+                        <div class="">
+                            {% for answer in match.answers.all %}
+                                <a href="{% url 'common:user_detail' answer.panellist.username %}" class="btn btn-light btn-sm">
+                                    <img src="{{ answer.panellist.profile.icon.url }}" class="img-profile-sm" alt="アイコン">
+                                    <span class="small">{{ answer.panellist.account_name }}</span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
-        {% endif %}
-    {% empty %}
-        お題がありません
-    {% endfor %}
+        {% empty %}
+            お題がありません
+        {% endfor %}
+    </div>
 
 {% endblock %}
