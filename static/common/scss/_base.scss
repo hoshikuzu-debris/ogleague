@@ -32,7 +32,7 @@ body {
 
         .container {
             margin: 2rem auto;
-            // max-width: map-get($container-max-widths , md);
+            max-width: map-get($container-max-widths , lg);
         };
     }
 }

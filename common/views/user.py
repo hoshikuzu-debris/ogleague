@@ -178,7 +178,7 @@ class UserDetail(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['answer_list'] = Answer.objects.filter(
-            panellist=self.request.user,
+            panellist=self.object,
             match__contest__was_marked=True
         ).order_by('-date_answered')
         return context

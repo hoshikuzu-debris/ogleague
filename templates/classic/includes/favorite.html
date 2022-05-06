@@ -4,4 +4,8 @@
     <button class="btn" name="favorite-{{answer.id}}" type="submit"><i class="bi bi-heart"></i></button>
 {% endif %}
 
-<span name="favorite-count-{{answer.id}}">{{ answer.favorites.count }}</span>
+{% if answer.favorites.exists %}
+    <a href="#favoriteUserModal-{{answer.id}}" class="" data-bs-toggle="modal">
+        <span name="favorite-count-{{answer.id}}">{{ answer.favorites.count }}</span>件のいいね
+    </a>
+{% endif %}

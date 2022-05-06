@@ -1,0 +1,31 @@
+<div class="modal fade" id="favoriteUserModal-{{answer.id}}" tabindex="-1" aria-labelledby="favoriteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="favoriteUserModalLabel">いいねしたユーザー</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <div class="list-group list-group-flush">
+                    {% for favorite in answer.favorites.all %}
+                        <a href="{% url 'common:user_detail' favorite.user.username %}" class="list-group-item list-group-item-action border-0 rounded rounded-3 p-2 d-flex align-items-center">
+                            <div class="me-2">
+                                <img src="{{ favorite.user.profile.icon.url }}" class="img-profile" alt="アイコン">
+                            </div>
+                            <div class="me-auto">
+                                {{ favorite.user.account_name }}
+                            </div>
+                            <div class="badge rounded-pill bg-warning me-1">
+                                {{ favorite.user.profile.classic_level }}レベル
+                            </div>
+                            <div class="badge rounded-pill bg-black">
+                                <i class="bi bi-trophy-fill"></i>
+                                {{favorite.user.answers.count }}
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

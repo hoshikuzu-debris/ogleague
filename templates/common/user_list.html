@@ -25,7 +25,7 @@
             {% for player in player_set %}
                 <a href="{% url 'common:user_detail' player.username %}" class="list-group-item list-group-item-action d-flex align-items-center p-3">
                     <div class="me-2">
-                        <img src="{{ player.profile.icon.url }}" class="img-profile rounded-circle" alt="アイコン">
+                        <img src="{{ player.profile.icon.url }}" class="img-profile" alt="アイコン">
                     </div>
                     <div class="me-auto">
                         {{ player.account_name }}

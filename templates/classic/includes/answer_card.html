@@ -1,9 +1,12 @@
 {% load static %}
 
 
-<div class="card answer-{{ answer.id }}">
-    {# <img src="..." class="card-img-top" alt="..."> #}
-    <a href="" class="d-block card-header bg-transparent">
+<div class="card answer-{{ answer.id }} shadow">
+    <a href="{% url 'classic:match_detail' answer.match.contest.id answer.match.level.name %}" class="card-header bg-transparent">
+        <div>
+            第{{ answer.match.contest.id }}回
+            {{ answer.match.level }}レベル
+        </div>
         {{ answer.match.question.text }}
         <div>
             {% if answer.match.question.image %}
@@ -18,43 +21,35 @@
             </div>
             {{ answer.text }}
         </div>
-    </div>
-
-    <div class="">
-        <span class="me-2">
-            {{ answer.score }}<small>点</small>
-        </span>
-        <span class="">
-            ?件のいいね
-        </span>
-    </div>
-    <div>
-        {% for review in answer.answer_reviews.all %}
-            <a href="{% url 'common:user_detail' review.reviewer.username %}" class="btn btn-primary btn-sm" role="button">
-                {{ review.reviewer.username }}
-                <span class="badge rounded-pill bg-secondary">{{ review.point }}</span>
+        <div class="d-flex  align-items-center">
+            <a href="#answerScoreModal-{{answer.id}}" class="text-decoration-none" data-bs-toggle="modal">
+                <span class="">{{ answer.score }}</span>点
             </a>
-        {% endfor %}
-    </div>
-    <div class="card-footer text-muted bg-transparent">
-        <div class="row g-2">
-            <div class="col">
-                <span class=""><i class="bi bi-chat-text"></i></span>
-            </div>
-            <div class="col">
-                <form class="favorite-form" action="{% url 'classic:api_post_favorite' %}" method="POST">
-                    {% csrf_token %}
-                    <div>
-                        {% include 'classic/includes/favorite.html' %}
-                    </div>
-                </form>
-            </div>
-            <div class="col">
-                <span class=""><i class="bi bi-info-circle"></i></span>
-            </div>
-            <div class="col">
-                <span class=""><i class="bi bi-share"></i></span>
-            </div>
+            <form class="favorite-form ms-auto" action="{% url 'classic:api_post_favorite' %}" method="POST">
+                {% csrf_token %}
+                {% include 'classic/includes/favorite.html' %}
+            </form>
         </div>
     </div>
+    <div class="card-footer bg-transparent">
+        {% for answer_review in answer.answer_reviews.all %}
+            {% if answer_review.comment %}
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'common:user_detail' answer_review.reviewer.username %}" class="text-decoration-none d-block flex-shrink-0">
+                        <img src="{{ answer_review.reviewer.profile.icon.url }}" class="img-profile me-1" alt="アイコン">
+                        <small class="text-muted">{{ answer_review.reviewer.account_name }}</small>
+                    </a>
+                    <div class="ps-3 small">
+                        {{ answer_review.comment }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
+
+<!-- AnswerScoreModal -->
+{% include 'classic/includes/answer_score_modal.html' %}
+
+<!-- FavoriteUserModal -->
+{% include 'classic/includes/favorite_user_modal.html' %}
