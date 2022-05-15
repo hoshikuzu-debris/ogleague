@@ -12,7 +12,6 @@ from classic.models import Question, QuestionCheck
 @require_POST
 @login_required
 def post_favorite(request):
-    print(request.body)
     data = json.loads(request.body)
     answer = get_object_or_404(Answer, pk=data.get('answer_id'))
     queryset = Favorite.objects.filter(

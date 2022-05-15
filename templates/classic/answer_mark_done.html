@@ -30,7 +30,6 @@
             {% for answer_review in answer.answer_reviews.all %}
                 {% if answer_review.reviewer == user %}
                     {{ answer_review.point }}
-                    {{ answer_review.comment }}
                 {% endif %}
             {% endfor %}
         </div>

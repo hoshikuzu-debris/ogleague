@@ -18,12 +18,13 @@ urlpatterns = [
     path('contest/results/<int:contest_id>/', views.ContestDetail.as_view(), name='contest_detail'),
     path('contest/results/<int:contest_id>/<slug:level_name>/', views.MatchDetail.as_view(), name='match_detail'),
     path('gallery/', views.GalleryTop.as_view(), name='gallery_top'),
-    #path('gallery/<int:question_id>/', views.gallery_detail, name='gallery_detail'),
+    path('gallery/<int:answer_id>/', views.GalleryDetail.as_view(), name='gallery_detail'),
     path('question/post/', views.QuestionPost.as_view(), name='question_post'),
     path('question/check/', views.QuestionCheck.as_view(), name='question_check'),
 
     #path('api/ajax-post-search/', views.ajax_post_search, name='ajax_post_search'),
     path('api/post-favorite/', views.api.post_favorite, name='api_post_favorite'),
+    path('api/post-comment/', views.api.post_comment, name='api_post_comment'),
     #path('api/ajax-sort-answer/', views.ajax_sort_answer, name='ajax_sort_answer'),
     path('api/check-question/', views.api.check_question, name='api_check_question'),
 ]

@@ -7,7 +7,7 @@
                 <a href="{% url 'classic:contest_detail' contest.id %}">第{{contest.id}}回</a>
             </div>
             <div class="accordion accordion-flush" id="accordionFlush{{contest.id}}">
-                {% for match in contest.matches.all %}
+                {% for match in contest.matches.all|dictsort:"level.order" %}
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-heading{{contest.id}}-{{match.level}}">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{contest.id}}-{{match.level}}" aria-expanded="false" aria-controls="flush-collapse{{contest.id}}-{{match.level}}">

@@ -21,19 +21,15 @@
         {{ form.non_field_errors }}
         {% for field in form %}
         <div class="mb-3">
-            {% if field.label %}<!--得点欄-->
-                <p>{{ field.label }}</p>
-                <div class="btn-group" role="group" aria-label="radio button group">
+            <p>{{ field.label }}</p>
+            <div class="btn-group" role="group" aria-label="radio button group">
                 {% for radio in field %}
                     {{ radio.tag }}
                     <label for="{{ radio.id_for_label }}" class="btn btn-outline-primary">
                         {{ radio.choice_label }}
                     </label>
                 {% endfor %}
-                </div>
-            {% else %}<!--コメント欄-->
-                {{ field }}
-            {% endif %}
+            </div>
             {{ field.errors }}
         </div>
         {% endfor %}

@@ -1,0 +1,11 @@
+{% for answer_comment in answer.answer_comments.all %}
+    <div class="d-flex align-items-center">
+        <a href="{% url 'common:user_detail' answer_comment.commentator.username %}" class="text-decoration-none d-block flex-shrink-0">
+            <img src="{{ answer_comment.commentator.profile.icon.url }}" class="img-profile me-1" alt="アイコン">
+            <small class="text-muted">{{ answer_comment.commentator.account_name }}</small>
+        </a>
+        <div class="ps-3 small">
+            {{ answer_comment.text }}
+        </div>
+    </div>
+{% endfor %}

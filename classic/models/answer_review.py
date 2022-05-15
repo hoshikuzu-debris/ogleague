@@ -18,7 +18,6 @@ class AnswerReview(models.Model):
         User,
         on_delete=models.PROTECT,
         verbose_name='投票者',
-        blank=True,
         related_name="answer_reviews",
         related_query_name="answer_review",
     )
@@ -34,11 +33,11 @@ class AnswerReview(models.Model):
         blank=True,
         default=0
     )
-    comment = models.CharField(
-        verbose_name='コメント',
-        blank=True,
-        max_length=20,
-    )
+    # comment = models.CharField(
+    #     verbose_name='コメント',
+    #     blank=True,
+    #     max_length=20,
+    # )
 
 
     class Meta:

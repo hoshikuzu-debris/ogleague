@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.admin.widgets import AdminTextareaWidget, AdminTextInputWidget
 from django.shortcuts import get_object_or_404
 
-from .models import Question, Answer, AnswerReview, Favorite, QuestionCheck, Contest, Level, Match
+from .models import Question, Answer, AnswerReview, AnswerComment, Favorite, QuestionCheck, Contest, Level, Match
 
 # 管理サイト用のQuestionForm
 class QuestionAdminForm(ModelForm):
@@ -24,6 +24,11 @@ class AnswerAdminForm(ModelForm):
             'text': AdminTextInputWidget(),
         }
 
+
+class AnswerCommentAdminForm(ModelForm):
+    class Meta:
+        model = AnswerComment
+        fields = '__all__'
 
 # 管理サイト用のFavoriteForm
 class FavoriteAdminForm(ModelForm):
@@ -97,10 +102,10 @@ def create_DynamicAnswerReviewForm(match_id):
                         label=answer.text, label_suffix='', choices=AnswerReview.POINT_CHOICES, initial=0, coerce=int, empty_value=None,
                         widget=forms.RadioSelect(attrs={'class': 'btn-check', 'autocomplete': 'off'}),
                     ),
-                f'comment_{answer.id}': forms.CharField(
-                        label='', label_suffix='', max_length=20, required=False,
-                        widget=forms.TextInput(attrs={'class': 'form-control','placeholder': '20文字以内'}),
-                    ),
+                # f'comment_{answer.id}': forms.CharField(
+                #         label='', label_suffix='', max_length=20, required=False,
+                #         widget=forms.TextInput(attrs={'class': 'form-control','placeholder': '20文字以内'}),
+                #     ),
             }
         )
 

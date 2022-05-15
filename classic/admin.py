@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from .forms import AnswerReviewAdminForm, QuestionAdminForm, AnswerAdminForm, FavoriteAdminForm, QuestionCheckAdminForm, ContestAdminForm, LevelAdminForm, MatchAdminForm
-from .models import Question, Answer, AnswerReview, Favorite, QuestionCheck, Contest, Level, Match
+from .forms import AnswerReviewAdminForm, AnswerCommentAdminForm, QuestionAdminForm, AnswerAdminForm, FavoriteAdminForm, QuestionCheckAdminForm, ContestAdminForm, LevelAdminForm, MatchAdminForm
+from .models import Question, Answer, AnswerReview, AnswerComment, Favorite, QuestionCheck, Contest, Level, Match
 from common.models import Profile
 
 
@@ -19,6 +19,12 @@ class AnswerAdminInline(admin.TabularInline):
 class AnswerReviewAdminInline(admin.TabularInline):
     model = AnswerReview
     form = AnswerReviewAdminForm
+    ordering = ['-id', ]
+    extra = 1
+
+class AnswerCommentAdminInline(admin.TabularInline):
+    model = AnswerComment
+    form = AnswerCommentAdminForm
     ordering = ['-id', ]
     extra = 1
 
@@ -71,7 +77,7 @@ class AnswerAdmin(admin.ModelAdmin):
     list_display = ("match", "rank", "score", "text", "panellist")
     search_fields = ("text",)
     ordering = ("-match", )
-    inlines = [AnswerReviewAdminInline, FavoriteAdminInline, ]
+    inlines = [AnswerReviewAdminInline, AnswerCommentAdminInline, FavoriteAdminInline, ]
 
 
 @admin.register(AnswerReview)
@@ -79,6 +85,10 @@ class AnswerReviewAdmin(admin.ModelAdmin):
     form = AnswerReviewAdminForm
     list_display = ("answer", "reviewer","point",)
 
+@admin.register(AnswerComment)
+class AnswerCommentAdmin(admin.ModelAdmin):
+    form = AnswerCommentAdminForm
+    list_display = ("answer", "commentator","text",)
 
 @admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):

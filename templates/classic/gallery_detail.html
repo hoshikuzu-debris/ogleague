@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'classic/includes/answer_card_detail.html' %}
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'classic/js/favorite.js' %}"></script>
+    <script src="{% static 'classic/js/post_comment.js' %}"></script>
+{% endblock %}

@@ -1,4 +1,4 @@
-<div class="card answer-{{ answer.id }} shadow mb-3">
+<div class="card answer-{{ answer.id }} shadow">
     <a href="{% url 'classic:match_detail' answer.match.contest.id answer.match.level.name %}" class="card-header bg-transparent">
         <div>
             第{{ answer.match.contest.id }}回
@@ -12,15 +12,17 @@
                 <img src="{{ answer.match.question.image.url }}" class="card-img-top" alt="お題画像">
             {% endif %}
         </div>
+        <div data-url="{% url 'common:user_detail' answer.match.question.questioner.username %}">
+            <img src="{{ answer.match.question.questioner.profile.icon.url }}" class="img-profile me-1" alt="アイコン">
+            <small class="text-muted">{{ answer.match.question.questioner.account_name }}</small>
+        </div>
     </a>
     <div class="card-body">
         <div class="card-text">
             <div class="d-inline-block rounded-patch bg-primary me-3">
                 <span class="rounded-patch-content text-white">{{ answer.rank }}</span>
             </div>
-            <a href="{% url 'classic:gallery_detail' answer.id %}">
-                {{ answer.text }}
-            </a>
+            {{ answer.text }}
         </div>
         <div class="d-flex  align-items-center">
             <a href="#answerScoreModal-{{answer.id}}" class="text-decoration-none" data-bs-toggle="modal">
@@ -30,6 +32,16 @@
                 {% csrf_token %}
                 {% include 'classic/includes/favorite.html' %}
             </form>
+        </div>
+    </div>
+    <div class="card-footer bg-transparent">
+        <form class="answer-comment-form" action="{% url 'classic:api_post_comment' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="answer-comment-{{answer.id}}" maxlength="20" placeholder="20文字以内" class="form-control" required>
+            <button type="submit" class="btn btn-primary">コメント</button>
+        </form>
+        <div class="answer-comment-container">
+            {% include 'classic/includes/answer_comment.html' %}
         </div>
     </div>
 </div>

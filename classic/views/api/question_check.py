@@ -1,4 +1,3 @@
-from tabnanny import check
 from classic.models import Question, Answer
 from django.http import JsonResponse, Http404
 from django.db.models import Count, Q, Sum

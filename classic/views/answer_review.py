@@ -163,7 +163,7 @@ class AnswerMarkConfirm(LoginRequiredMixin, FormView):
                 answer=answer,
                 reviewer=self.request.user,
                 point=form_data[f'point_{answer.id}'],
-                comment=form_data[f'comment_{answer.id}']
+                # comment=form_data[f'comment_{answer.id}']
             )
             answer.score = F('score') + answer_review.point
             answer.save()

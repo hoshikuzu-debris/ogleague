@@ -9,3 +9,12 @@ class GalleryTop(ListView):
     queryset = Answer.objects.filter(
         match__contest__was_marked=True,
     )
+
+
+class GalleryDetail(DetailView):
+    # model = Answer
+    template_name = 'classic/gallery_detail.html'
+    pk_url_kwarg = 'answer_id'
+    queryset = Answer.objects.filter(
+        match__contest__was_marked=True,
+    )
