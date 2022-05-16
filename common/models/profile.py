@@ -38,6 +38,7 @@ class Profile(models.Model):
     class Meta:
         verbose_name = "プロフィール"
         verbose_name_plural = "プロフィール"
+        ordering = ['classic_level', ]
 
     def __str__(self):
         return self.user.username

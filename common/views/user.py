@@ -146,27 +146,27 @@ def user_settings_update(request):
 
 class UserList(generic.ListView):
     '''ユーザー一覧'''
+    model = User
+    ordering = ('profile', 'username', )
+    paginate_by = 15
     template_name = 'common/user_list.html'
-    context_object_name = 'player_list'
+    # context_object_name = 'player_list'
+    # queryset = User.objects.order_by('username')
 
-    def get_queryset(self):
-        return User.objects.order_by('username')
+# class UserList(generic.TemplateView):
+    # '''ユーザー一覧'''
+    # template_name = 'common/user_list.html'
 
-
-class UserList(generic.TemplateView):
-    '''ユーザー一覧'''
-    template_name = 'common/user_list.html'
-
-    def get_context_data(self, **kwargs):
-        """Insert match into the context dict."""
-        context = super().get_context_data(**kwargs)
-        player_list = {}
-        for level in Level.objects.order_by('order'):
-            player_list[level] = User.objects.filter(
-                profile__classic_level=level
-            ).order_by('username')
-        context['player_list'] = player_list
-        return context
+    # def get_context_data(self, **kwargs):
+        # """Insert match into the context dict."""
+        # context = super().get_context_data(**kwargs)
+        # player_list = {}
+        # for level in Level.objects.order_by('order'):
+            # player_list[level] = User.objects.filter(
+                # profile__classic_level=level
+            # ).order_by('username')
+        # context['player_list'] = player_list
+        # return context
 
 class UserDetail(generic.DetailView):
     context_object_name = 'player'

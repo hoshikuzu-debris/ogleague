@@ -13,8 +13,8 @@
         現在の順位
         {% for answer in match.answers.all|dictsort:"rank" %}
             <a href="{% url 'common:user_detail' answer.panellist.username %}" class="d-block border-bottom p-2">
-                {{ answer.rank }}
-                {{ answer.score }}
+                {{ answer.rank }}位
+                {{ answer.score }}点
                 <span class="m-2">
                     <img src="{{ answer.panellist.profile.icon.url }}" class="rounded-circle" height="35px" width="35px" alt="アイコン">
                 </span>
@@ -25,7 +25,7 @@
 
     {% for answer in match.answers.all %}
     <div>
-        {{ answer }}
+        {{ answer.text }}
         <div>
             {% for answer_review in answer.answer_reviews.all %}
                 {% if answer_review.reviewer == user %}
