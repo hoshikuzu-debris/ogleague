@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'common.apps.CommonConfig',
     'classic.apps.ClassicConfig',
+    'scramble.apps.ScrambleConfig',
 
     'widget_tweaks',
 ]

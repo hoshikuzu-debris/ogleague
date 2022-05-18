@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Level(models.Model):
     name = models.SlugField(
         "レベル",

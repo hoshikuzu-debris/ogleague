@@ -26,6 +26,20 @@
         </div>
     </li>
 
+    <li class="nav-item" id="scrambleNav">
+        <a class="nav-link" data-bs-toggle="collapse" href="#collapseScramble" role="button" aria-expanded="false" aria-controls="collapseScramble">
+            <span>SC</span>
+            <span>スクランブル</span>
+        </a>
+        <div class="collapse" id="collapseScramble" data-bs-parent="#sidebar">
+            <div class="collapse-inner rounded">
+                <a href="{% url 'scramble:index' %}" class="collapse-item home">
+                    ホーム
+                </a>
+            </div>
+        </div>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="{% url 'common:user_list' %}">
             <i class="bi bi-people-fill"></i>
