@@ -33,11 +33,6 @@ class AnswerReview(models.Model):
         blank=True,
         default=0
     )
-    # comment = models.CharField(
-    #     verbose_name='コメント',
-    #     blank=True,
-    #     max_length=20,
-    # )
 
 
     class Meta:

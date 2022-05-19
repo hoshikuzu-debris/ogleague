@@ -24,7 +24,6 @@ class AnswerComment(models.Model):
     )
     text = models.CharField(
         verbose_name='コメント',
-        blank=True,
         max_length=20,
     )
     timestamp = models.DateTimeField(verbose_name='コメント時刻', default=timezone.now)
